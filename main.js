@@ -8,8 +8,8 @@ block="";
 function blockload(get_image) {
     fabric.Image.fromURL(get_image,function (Img) {
         block=Img;
-        block.scaleToWidth(150);
-        block.scaleToHeight(150);
+        block.scaleToWidth(blockwidth);
+        block.scaleToHeight(blockheight);
         block.set({top:playery,left:playerx});
         canvas.add(block);
     });
@@ -40,19 +40,19 @@ function keeydown(e) {
     keypress=e.keyCode;
     console.log(keypress);
     if(keypress=="37") {
-        //left();
+        left();
         console.log("Left");
     }
     if(keypress=="38") {
-        //up();
+        up();
         console.log("Up");
     }
     if(keypress=="39") {
-        //right();
+        right();
         console.log("Right");
     }
     if(keypress=="40") {
-        //down();
+        down();
         console.log("Down");
     }
     if(keypress=="84") {
@@ -98,5 +98,45 @@ function keeydown(e) {
     if(e.shiftkey && keypress=="77") {
         smaller();
         console.log("Shift and M");
+    }
+}
+function left() {
+    if (playerx>=0) {
+        playerx=playerx-blockwidth;
+        canvas.remove(skin);
+        console.log("Block Width- " + blockwidth);
+        console.log("Current Player X- " + playerx);
+        console.log("Current Player Y- " + playery);
+        skinload();
+    }
+}
+function up() {
+    if(playery>=0) {
+        playery=playery-blockheight;
+        canvas.remove(skin);
+        console.log("Block Height- " + blockheight);
+        console.log("Current Player X- " + playerx);
+        console.log("Current Player Y- " + playery);
+        skinload();
+    }
+}
+function right() {
+    if(playerx<=850) {
+        playerx=playerx+blockwidth;
+        canvas.remove(skin);
+        console.log("Block Width- " + blockwidth);
+        console.log("Current Player X- " + playerx);
+        console.log("Current Player Y- " + playery);
+        skinload();
+    }
+}
+function down() {
+    if (playery<=500) {
+        playery=playery+blockheight;
+        canvas.remove(skin);
+        console.log("Block Height- " + blockheight);
+        console.log("Current Player X- " + playerx);
+        console.log("Current Player Y- " + playery);
+        skinload();
     }
 }
